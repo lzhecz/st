@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "mono:pixelsize=18:antialias=true:autohint=true";
 static char *font2[] = { "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
 static int borderpx = 2;
 
@@ -107,34 +107,42 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 1;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	"#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-	"#cc241d",
-	"#98971a",
-	"#d79921",
-	"#458588",
-	"#b16286",
-	"#689d6a",
-	"#a89984",
-	"#928374",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#ebdbb2",
+	/* 8 normal colors */
+	"#000000", /* hard contrast: #1d2021 / soft contrast: #32302f */
+	"#FF9580",
+	"#8AFF80",
+	"#FFFF80",
+	"#9580FF", // blue
+	"#FF80BF", // magenta
+	"#80FFEA",
+	"#F8F8F2",
+	/* 8 bright colors */
+	"#454158",
+	"#FF9580",
+	"#8AFF80",
+	"#FFFF80",
+	"#9580FF", // blue
+	"#FF80BF", // magenta
+	"#80FFEA",
+	"#FFFFFF",
+	// "#7970A9",
+	// "#FFAA99",
+	// "#A2FF99",
+	// "#FFFF99",
+	// "#AA99FF",
+	// "#FF99CC",
+	// "#99FFEE",
+	// "#FFFFFF",
 	[255] = 0,
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#add8e6", /* 256 -> cursor */
-	"#555555", /* 257 -> rev cursor*/
-	"#282828", /* 258 -> bg */
-	"#ebdbb2", /* 259 -> fg */
+	"#22212C", /* 256 -> bg */
+	"#F8F8F2", /* 257 -> fg */
 };
 
 
@@ -142,11 +150,12 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
-unsigned int defaultbg = 258;
-unsigned int defaultcs = 256;
+
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+unsigned int background = 256;
+static unsigned int defaultcs = 257;
 unsigned int defaultrcs = 257;
-unsigned int background = 258;
 
 /*
  * Default shape of cursor
@@ -206,9 +215,9 @@ ResourcePref resources[] = {
 		{ "color13",      STRING,  &colorname[13] },
 		{ "color14",      STRING,  &colorname[14] },
 		{ "color15",      STRING,  &colorname[15] },
-		{ "background",   STRING,  &colorname[258] },
-		{ "foreground",   STRING,  &colorname[259] },
-		{ "cursorColor",  STRING,  &colorname[256] },
+		{ "background",   STRING,  &colorname[256] },
+		{ "foreground",   STRING,  &colorname[257] },
+		{ "cursorColor",  STRING,  &colorname[257] },
 		{ "termname",     STRING,  &termname },
 		{ "shell",        STRING,  &shell },
 		{ "minlatency",   INTEGER, &minlatency },
